@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ketlen 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.4);
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 400px;
+      margin: 40px auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 { font-size: 1.6rem; }
+
+    .letter {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 10px;
+    }
+
+    .buttons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .yes { background: #00ff88; color: black; }
+    .no { background: #ff4d4d; color: white; }
+
+    #response {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      color: rgba(255,255,255,0.7);
+      animation: float 5s linear;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="music" autoplay loop>
+    <source src="afterlives - Children - Slowed (SPOTISAVER).mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h1>💖 Ketlen 💖</h1>
+
+    <div class="letter">
+      Sem muitas palavras...
+      <br><br>
+      Ketlen, você aceita viver essa vida comigo? 💘
+    </div>
+
+    <img src="photo_2026-03-29_12-03-58.jpg" alt="Nossa foto">
+
+    <div class="buttons">
+      <button class="yes" onclick="accepted()">Sim 💘</button>
+      <button class="no" ontouchstart="moveButton(this)" onclick="moveButton(this)">Não 😢</button>
+    </div>
+
+    <div id="response"></div>
+  </div>
+
+  <script>
+    const token = "8685876155:AAEVwI507_-8NNSuNLmiqvzvDzTti_pjTUY";
+    const chat_id = "8404857753";
+
+    function accepted() {
+      document.getElementById('response').innerHTML = 'EU TE AMO, KETLEN ❤️ AGORA É OFICIAL 😍';
+
+      const mensagem = `💖 ELA DISSE SIM 💖\nKetlen aceitou 😍\n${new Date().toLocaleString()}`;
+
+      const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(mensagem)}`;
+
+      const img = new Image();
+      img.src = url;
+
+      if (navigator.vibrate) navigator.vibrate([200,100,200]);
+    }
+
+    function moveButton(btn) {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      btn.style.position = 'fixed';
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }, 400);
+  </script>
+
+</body>
+</html>
